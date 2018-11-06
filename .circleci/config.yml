@@ -2,7 +2,7 @@ version: 2
 jobs:
   buildAndTest:
     docker:
-        - image: circleci/node
+      - image: circleci/node
     steps:
       - setup_remote_docker
       - checkout
@@ -20,16 +20,13 @@ jobs:
       - run:
           name: Test
           command: npm test
-      - run:
-          name: Docker build
-          command: docker build --no-cache .
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
   publish:
     docker:
-       - image: circleci/node
+      - image: circleci/node
     steps:
       - setup_remote_docker
       - checkout
@@ -42,14 +39,13 @@ jobs:
       - run:
           name: Install Cantrips
           command: sudo npm i -g cantrips@"<=1.0.0"
-      - run: 
+      - run:
           name: Npm credentials
           command: cantrips npm credentials
       - run:
           name: Npm publish
           command: npm publish
 
-  
 workflows:
   version: 2
   buildAndPublish:
@@ -68,4 +64,3 @@ workflows:
             branches:
               ignore: /.*/
           context: org-global
-
