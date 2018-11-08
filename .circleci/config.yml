@@ -9,17 +9,20 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install
-          command: npm install
+          name: Install yarn
+          command: npm install yarn
+      - run:
+          name: Install dependencies
+          command: yarn
       - run:
           name: Lint
-          command: npm run lint
+          command: yarn run lint
       - run:
           name: Babel build
-          command: npm run babel:build
+          command: yarn run babel:build
       - run:
           name: Test
-          command: npm test
+          command: yarn test
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -31,8 +34,11 @@ jobs:
       - setup_remote_docker
       - checkout
       - run:
-          name: Npm install
-          command: npm install
+          name: Install yarn
+          command: npm install yarn
+      - run:
+          name: Install dependencies
+          command: yarn
       - run:
           name: Babel build
           command: npm run babel:build
