@@ -55,7 +55,7 @@ export class ParameterProvider {
       ReleaseVersion: {
         CircleCi:
           this.getParameter("Tag").replace(
-            this.getParamter("ReleaseTagFormat"),
+            this.getParameter("ReleaseTagFormat"),
             ""
           ) || "",
         Jenkins: process.env.BRANCH_NAME
