@@ -26,10 +26,6 @@ export class ParameterProvider {
         CircleCi: process.env.RELEASE_TAG_FORMAT || "release-",
         Jenkins: process.env.RELEASE_TAG_FORMAT || "release-"
       },
-      ReleaseVersion: {
-        CircleCi: process.env.CIRCLE_TAG || "",
-        Jenkins: process.env.RELEASE_VERSION || ""
-      },
       BranchName: {
         CircleCi: process.env.CIRCLE_BRANCH || "",
         Jenkins: process.env.BRANCH_NAME || ""
@@ -55,6 +51,14 @@ export class ParameterProvider {
           this.getParameter("Tag").startsWith(
             this.getParameter("ReleaseTagFormat")
           )
+      },
+      ReleaseVersion: {
+        CircleCi:
+          this.getParameter("Tag").replace(
+            this.getParamter("ReleaseTagFormat"),
+            ""
+          ) || "",
+        Jenkins: process.env.BRANCH_NAME
       },
       ProjectName: {
         CircleCi: () => {
