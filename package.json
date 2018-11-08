@@ -1,6 +1,6 @@
 {
   "name": "@cantrips/core",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "description": "Cantrips-core for more descriptive builds",
   "repository": "https://github.com/buildcantrips/core.git",
   "main": "./lib/index.js",
