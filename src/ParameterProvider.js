@@ -27,7 +27,7 @@ export class ParameterProvider {
         Jenkins: process.env.RELEASE_TAG_FORMAT || "release-"
       },
       ReleaseVersion: {
-        CircleCi: process.env.RELEASE_VERSION || "",
+        CircleCi: process.env.CIRCLE_TAG || "",
         Jenkins: process.env.RELEASE_VERSION || ""
       },
       BranchName: {

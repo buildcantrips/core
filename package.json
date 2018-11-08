@@ -31,7 +31,7 @@
     "winston": "^2.4.0"
   },
   "scripts": {
-    "test": "jest --runInBand",
+    "test": "jest --runInBand src",
     "lint": "eslint src",
     "babel:build": "babel src -d lib --ignore node_modules,src/modules",
     "babel:watch": "babel src -d lib -w --ignore node_modules,src/modules"
