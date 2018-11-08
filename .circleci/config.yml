@@ -44,7 +44,7 @@ jobs:
           command: yarn run babel:build
       - run:
           name: Install Cantrips
-          command: sudo yarn add -g cantrips@"<=1.0.0"
+          command: sudo yarn global add cantrips@"<=1.0.0"
       - run:
           name: Npm credentials
           command: cantrips npm credentials
