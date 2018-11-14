@@ -7,6 +7,7 @@ describe("parameterProvider", () => {
   var provider;
 
   it("throws error using in unknown environment", async () => {
+    process.env.CIRCLECI = "";
     expect(() => new ParameterProvider())
       .to.throw(Error)
       .that.ownProperty("message")
