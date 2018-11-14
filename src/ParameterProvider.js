@@ -1,3 +1,5 @@
+import logger from "./utils/Logger";
+
 function determineCiServer() {
   if (process.env.CIRCLECI) {
     return "CircleCi";
@@ -48,7 +50,9 @@ export class ParameterProvider {
   computeDerivedParameters() {
     let isRelease =
       this.getParameter("Tag") &&
-      this.getParameter("Tag").startsWith(this.getParameter("Tag"));
+      this.getParameter("Tag").startsWith(
+        this.getParameter("ReleaseTagFormat")
+      );
 
     let releaseVersion = this.getParameter("Tag").replace(
       this.getParameter("ReleaseTagFormat"),
@@ -90,6 +94,17 @@ export class ParameterProvider {
       return result();
     }
     return result;
+  }
+
+  describeCI() {
+    logger.info(
+      `Current CI server: ${this.ciServer}\n` +
+        Object.keys(this.parameterMap)
+          .map(key => {
+            return `${key}: ${this.getParameter(key)}`;
+          })
+          .join("\n")
+    );
   }
 }
 
