@@ -1,5 +1,3 @@
-"use strict";
-
 import { runCommand } from "./utils/utils";
 import logger from "./utils/Logger";
 
