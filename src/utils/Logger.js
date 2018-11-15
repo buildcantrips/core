@@ -1,5 +1,4 @@
 import fs from "fs";
-import path from "path";
 import winston from "winston";
 
 winston.emitErrs = true;
@@ -11,21 +10,12 @@ if (!fs.existsSync(logFolder)) {
 
 module.exports = new winston.Logger({
   transports: [
-    new winston.transports.File({
-      level: "info",
-      filename: path.join(logFolder, "log.log"),
-      handleExceptions: true,
-      json: true,
-      maxsize: 5242880,
-      maxFiles: 5,
-      colorize: false
-    }),
     new winston.transports.Console({
-      level: "debug",
+      level: process.env.DEBUG ? "debug": "info",
       handleExceptions: true,
       json: false,
       colorize: true
     })
   ],
-  exitOnError: false
+  exitOnError: true
 });
