@@ -42,7 +42,13 @@ export class ParameterProvider {
         CircleCi: "",
         Jenkins: process.env.BUILD_NUMBER || "",
         TeamCity: process.env.BUILD_NUMBER || ""
+      },
+      Sha: {
+        CircleCi: "",
+        TeamCity: process.env.BUILD_VCS_NUMBER || "",
+        Jenkins: ""
       }
+
     };
     this.computeDerivedParameters();
   }
@@ -81,6 +87,11 @@ export class ParameterProvider {
             .PROJECT_NAME || ""}`;
           return result !== "/" ? result : "unknown";
         }
+      },
+      ShortSha: {
+        CircleCi: "",
+        TeamCity: this.getParameter("Sha").substring(0,8),
+        Jenkins: ""
       }
     });
   }

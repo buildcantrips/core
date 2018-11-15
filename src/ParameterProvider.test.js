@@ -56,6 +56,7 @@ describe("parameterProvider", () => {
         process.env.BRANCH_NAME = "validBranchName";
         process.env.PROJECT_GROUP = "validGroup";
         process.env.PROJECT_NAME = "validRepoName";
+        process.env.BUILD_VCS_NUMBER = "1234567890"
         provider = new ParameterProvider();
       });
       it("resolves branch name", async () => {
@@ -68,6 +69,12 @@ describe("parameterProvider", () => {
       });
       it("resolves build number", async () => {
         expect(await provider.getParameter("BuildNumber")).to.be.eql("1234");
+      });
+      it("resolves build sha", async () => {
+        expect(await provider.getParameter("Sha")).to.be.eql("1234567890");
+      });
+      it("computes short sha correctly", async () => {
+        expect(await provider.getParameter("ShortSha")).to.be.eql("12345678");
       });
       it("determines release mode correctly", async () => {
         process.env.BRANCH_NAME = "release-1.2.3";
