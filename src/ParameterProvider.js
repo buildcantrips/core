@@ -44,7 +44,7 @@ export class ParameterProvider {
         TeamCity: process.env.BUILD_NUMBER || ""
       },
       Hash: {
-        CircleCi: "",
+        CircleCi: process.env.CIRCLE_SHA1 || "",
         TeamCity: process.env.BUILD_VCS_NUMBER || "",
         Jenkins: ""
       }
@@ -89,7 +89,7 @@ export class ParameterProvider {
         }
       },
       ShortHash: {
-        CircleCi: "",
+        CircleCi: this.getParameter("Hash").substring(0,8),
         TeamCity: this.getParameter("Hash").substring(0,8),
         Jenkins: ""
       }
