@@ -30,6 +30,7 @@ function deleteFolderRecursive(path) {
 
 async function runCommand(command, details = undefined, { silent } = {}) {
   let spinner;
+  let result = '';
   if (!silent) {
     spinner = ora(details || command).start();
   }
@@ -45,11 +46,14 @@ async function runCommand(command, details = undefined, { silent } = {}) {
     childProcess.stdout.pipe(process.stdout);
   }
   return new Promise(resolve => {
+    childProcess.stdout.on('data', function(data) {
+      result += data.toString();
+    });
     childProcess.on("exit", () => {
       if (!silent) {
         spinner.succeed();
       }
-      resolve(true);
+      resolve(result);
     });
   });
 }
