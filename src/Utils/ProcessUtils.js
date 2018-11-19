@@ -1,5 +1,4 @@
 import { exec } from "child_process";
-import logger from "../Logger";
 import ora from "ora";
 
 async function runCommand(command, details = undefined, { silent } = {}) {
@@ -13,7 +12,7 @@ async function runCommand(command, details = undefined, { silent } = {}) {
       if (!silent) {
         spinner.fail();
       }
-      logger.error(`exec error: ${error}`);
+      throw new Error(`Command failed: ${command}`)
     }
   });
   if (process.env.DEBUG) {
