@@ -1,4 +1,4 @@
-import logger from "./utils/Logger";
+import logger from "./Logger";
 
 function determineCiServer() {
   if (process.env.CIRCLECI) {

@@ -1,5 +1,5 @@
-import { runCommand } from "./utils/utils";
-import logger from "./utils/Logger";
+import { runCommand } from "./Utils/ProcessUtils";
+import logger from "./Logger";
 
 export default async (...args) => {
   const container = new Container(...args);

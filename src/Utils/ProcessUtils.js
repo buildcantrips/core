@@ -1,32 +1,6 @@
-import fs from "fs";
 import { exec } from "child_process";
-import logger from "./Logger";
+import logger from "../Logger";
 import ora from "ora";
-
-function normalizeString(string) {
-  return string
-    .split("/")
-    .join("-")
-    .toLowerCase();
-}
-
-function isNormalizedString(string) {
-  return !string.includes("/") && string === string.toLowerCase();
-}
-
-function deleteFolderRecursive(path) {
-  if (fs.existsSync(path)) {
-    fs.readdirSync(path).forEach(function(file) {
-      var curPath = path + "/" + file;
-      if (fs.statSync(curPath).isDirectory()) {
-        deleteFolderRecursive(curPath);
-      } else {
-        fs.unlinkSync(curPath);
-      }
-    });
-    fs.rmdirSync(path);
-  }
-}
 
 async function runCommand(command, details = undefined, { silent } = {}) {
   let spinner;
@@ -59,8 +33,5 @@ async function runCommand(command, details = undefined, { silent } = {}) {
 }
 
 module.exports = {
-  normalizeString: normalizeString,
-  deleteFolderRecursive: deleteFolderRecursive,
-  runCommand: runCommand,
-  isNormalizedString: isNormalizedString
-};
+  runCommand
+}

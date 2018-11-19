@@ -1,9 +1,9 @@
 /* eslint-env jest */
 
 import { expect } from 'chai'
-import { normalizeString } from '../../src/utils/utils.js'
+import { normalizeString } from './StringUtils'
 
-describe('utils', () => {
+describe('StringUtils', () => {
   describe('normalizeString', async () => {
     it('replaces all / with -', async () => {
       expect(normalizeString('test/string/with/forward/slashes')).to.be.eql('test-string-with-forward-slashes')
