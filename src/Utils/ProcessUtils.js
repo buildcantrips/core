@@ -1,34 +1,34 @@
-import { exec } from "child_process";
-import ora from "ora";
+import { exec } from "child_process"
+import ora from "ora"
 
 async function runCommand(command, details = undefined, { silent } = {}) {
-  let spinner;
-  let result = '';
+  let spinner
+  let result = ""
   if (!silent) {
-    spinner = ora(details || command).start();
+    spinner = ora(details || command).start()
   }
   const childProcess = exec(command, { cwd: process.cwd() }, error => {
     if (error) {
       if (!silent) {
-        spinner.fail();
+        spinner.fail()
       }
       throw new Error(`Command failed: ${command}`)
     }
-  });
+  })
   if (process.env.DEBUG) {
-    childProcess.stdout.pipe(process.stdout);
+    childProcess.stdout.pipe(process.stdout)
   }
   return new Promise(resolve => {
-    childProcess.stdout.on('data', function(data) {
-      result += data.toString();
-    });
+    childProcess.stdout.on("data", function(data) {
+      result += data.toString()
+    })
     childProcess.on("exit", () => {
       if (!silent) {
-        spinner.succeed();
+        spinner.succeed()
       }
-      resolve(result);
-    });
-  });
+      resolve(result)
+    })
+  })
 }
 
 module.exports = {

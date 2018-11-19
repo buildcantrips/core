@@ -2,13 +2,12 @@ function normalizeString(string) {
   return string
     .split("/")
     .join("-")
-    .toLowerCase();
+    .toLowerCase()
 }
 
 function isNormalizedString(string) {
-  return !string.includes("/") && string === string.toLowerCase();
+  return !string.includes("/") && string === string.toLowerCase()
 }
-
 
 module.exports = {
   isNormalizedString,

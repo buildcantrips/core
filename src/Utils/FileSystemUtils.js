@@ -1,20 +1,19 @@
-import fs from "fs";
+import fs from "fs"
 
 function deleteFolderRecursive(path) {
   if (fs.existsSync(path)) {
     fs.readdirSync(path).forEach(function(file) {
-      var curPath = path + "/" + file;
+      var curPath = path + "/" + file
       if (fs.statSync(curPath).isDirectory()) {
-        deleteFolderRecursive(curPath);
+        deleteFolderRecursive(curPath)
       } else {
-        fs.unlinkSync(curPath);
+        fs.unlinkSync(curPath)
       }
-    });
-    fs.rmdirSync(path);
+    })
+    fs.rmdirSync(path)
   }
 }
 
 module.exports = {
   deleteFolderRecursive
 }
-

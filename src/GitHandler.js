@@ -1,33 +1,33 @@
-import simpleGit from "simple-git";
-var map = Array.prototype.map;
+import simpleGit from "simple-git"
+var map = Array.prototype.map
 
 class GitHandler {
   repoLocation = __dirname;
 
   status = async () => {
-    let result = null;
+    let result = null
     return new Promise(async (resolve, reject) => {
       await simpleGit(this.repoLocation).status(function(err, status) {
         if (err != null) {
-          reject(err);
+          reject(err)
         }
         result = map.call(status["files"], function(file) {
-          return file["path"];
-        });
-        resolve(result);
-      });
-    });
+          return file["path"]
+        })
+        resolve(result)
+      })
+    })
   };
 
   getCurrentBranch = async () => {
     return new Promise(async resolve => {
       await simpleGit(this.repoLocation).branch(function(err, summary) {
         if (err != null) {
-          throw err;
+          throw err
         }
-        resolve(summary["current"]);
-      });
-    });
+        resolve(summary["current"])
+      })
+    })
   };
 
   // // todo: handle remote name properly
@@ -86,4 +86,4 @@ class GitHandler {
   // }
 }
 
-export default new GitHandler();
+export default new GitHandler()
