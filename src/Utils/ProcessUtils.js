@@ -12,7 +12,7 @@ async function runCommand(command, details = undefined, { silent } = {}) {
       if (!silent) {
         spinner.fail()
       }
-      throw new Error(`Command failed: ${command}`)
+      throw new Error(`Command failed: ${command}:\n${error}`)
     }
   })
   if (process.env.DEBUG) {
