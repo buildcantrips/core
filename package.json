@@ -25,6 +25,7 @@
     ]
   },
   "dependencies": {
+    "@babel/runtime": "7.1.2",
     "ora": "^3.0.0",
     "requirejs": "^2.3.6",
     "simple-git": "^1.106.0",
