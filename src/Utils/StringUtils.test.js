@@ -1,4 +1,4 @@
-/* eslint-env jest */
+/* eslint-env mocha */
 
 import { expect } from "chai"
 import { normalizeString } from "./StringUtils"

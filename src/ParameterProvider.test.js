@@ -1,4 +1,4 @@
-/* eslint-env jest */
+/* eslint-env mocha */
 import ParameterProvider from "./ParameterProvider"
 
 import { expect } from "chai"
@@ -15,7 +15,7 @@ describe("parameterProvider", () => {
   })
 
   describe("core", () => {
-    beforeAll(() => {
+    before(() => {
       process.env.CIRCLECI = "CIRCLECI"
       provider = new ParameterProvider()
     })
@@ -30,7 +30,7 @@ describe("parameterProvider", () => {
   })
   describe("environments", () => {
     describe("CircleCI", () => {
-      beforeAll(() => {
+      before(() => {
         process.env.CIRCLECI = "CIRCLECI"
         process.env.CIRCLE_BRANCH = "validBranchName"
         process.env.CIRCLE_PROJECT_USERNAME = "validUser"
@@ -49,7 +49,7 @@ describe("parameterProvider", () => {
       })
     })
     describe("TeamCity", () => {
-      beforeAll(() => {
+      before(() => {
         process.env.CIRCLECI = ""
         process.env.TEAMCITY_VERSION = "2018.1"
         process.env.BUILD_NUMBER = "1234"

@@ -1,4 +1,4 @@
-/* eslint-env jest */
+/* eslint-env mocha */
 
 import GitHandler from "../src/GitHandler"
 
@@ -25,7 +25,7 @@ function recreateGitRepository() {
 }
 
 describe("GitHandler", () => {
-  afterAll(() => {
+  after(() => {
     if (fs.existsSync(tempDir)) {
       deleteFolderRecursive(tempDir)
     }

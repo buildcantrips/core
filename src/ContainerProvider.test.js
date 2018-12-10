@@ -1,4 +1,4 @@
-/* eslint-env jest */
+/* eslint-env mocha */
 
 import ContainerProvider, { Container } from "./ContainerProvider"
 import chai, { expect } from "chai"
@@ -13,8 +13,7 @@ var validPropertyKeyValue = { [validPropertyName]: validPropertyValue }
 
 describe("ContainerProvider", () => {
   var containerProvider
-  beforeAll(async () => {
-    jest.setTimeout(60000)
+  before(async () => {
     containerProvider = await ContainerProvider(validImageUrl, {
       environment: validPropertyKeyValue
     })
@@ -33,8 +32,7 @@ describe("Container", () => {
   var messages = []
   var validCommand = 'echo "thing"'
 
-  beforeAll(async () => {
-    jest.setTimeout(20000)
+  before(async () => {
     container = new Container(validImageUrl, {
       environment: { testName: "testValue" },
       volumes: ["test:path"]
@@ -62,7 +60,7 @@ describe("Container", () => {
 
   describe("run", () => {
     var container
-    beforeAll(async () => {
+    before(async () => {
       container = new Container(
         validImageUrl,
         { environment: { testName: "testValue" }, volumes: ["test:path"] },
