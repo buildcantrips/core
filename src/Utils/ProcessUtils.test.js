@@ -10,6 +10,11 @@ describe("processUtils", () => {
         "test string\n"
       )
     })
+    it("returns empty string if the result is empty", async () => {
+      expect(runCommandSync("ls -la >> /tmp/testfile")).to.equal(
+        ""
+      )
+    })
     it("throws error if the command fails", async () => {
       expect(() => runCommandSync("invalid command")).to.throw(
         /Command failed: invalid command.*/

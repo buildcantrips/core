@@ -45,7 +45,7 @@ function runCommandSync(command, details = undefined, { silent } = {}) {
     if (!silent) {
       spinner.succeed()
     }
-    return childProcess.toString()
+    return (childProcess || "").toString()
   } catch (e) {
     if (!silent) {
       spinner.fail()
