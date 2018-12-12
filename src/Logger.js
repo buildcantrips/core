@@ -1,21 +1,16 @@
-import fs from "fs"
-import winston from "winston"
+import { format, createLogger, transports } from "winston"
+const { colorize, combine, printf } = format
 
-winston.emitErrs = true
-const logFolder = "./logs"
-
-if (!fs.existsSync(logFolder)) {
-  fs.mkdirSync(logFolder)
-}
-
-module.exports = new winston.Logger({
+module.exports = createLogger({
   transports: [
-    new winston.transports.Console({
+    new transports.Console({
       level: process.env.DEBUG ? "debug" : "info",
-      handleExceptions: true,
-      json: false,
-      colorize: true
+      format: combine(
+        colorize({ message: true }),
+        printf(info => {
+          return info.message
+        })
+      )
     })
-  ],
-  exitOnError: true
+  ]
 })
