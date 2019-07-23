@@ -2,9 +2,9 @@ import simpleGit from "simple-git"
 var map = Array.prototype.map
 
 class GitHandler {
-  repoLocation = __dirname;
+  repoLocation = __dirname
 
-  status = async () => {
+  status = () => {
     let result = null
     return new Promise(async (resolve, reject) => {
       await simpleGit(this.repoLocation).status(function(err, status) {
@@ -17,9 +17,9 @@ class GitHandler {
         resolve(result)
       })
     })
-  };
+  }
 
-  getCurrentBranch = async () => {
+  getCurrentBranch = () => {
     return new Promise(async resolve => {
       await simpleGit(this.repoLocation).branch(function(err, summary) {
         if (err != null) {
@@ -28,7 +28,7 @@ class GitHandler {
         resolve(summary["current"])
       })
     })
-  };
+  }
 
   // // todo: handle remote name properly
   // this.pushToRemote = async (elementToPush) => {
