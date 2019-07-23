@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Test
           command: yarn test
-       - store_artifacts:
+      - store_artifacts:
           path: test
           prefix: tests
       - store_artifacts:
