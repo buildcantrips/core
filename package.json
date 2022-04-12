@@ -33,7 +33,7 @@
     "@babel/runtime": "7.5.5",
     "ora": "^3.0.0",
     "requirejs": "^2.3.6",
-    "simple-git": "^1.122.0",
+    "simple-git": "^3.5.0",
     "winston": "^3.2.1"
   },
   "scripts": {
